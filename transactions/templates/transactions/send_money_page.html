@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% block head_title %}
+  {{ title }}
+{% endblock %}
+{% block body %}
+  <div class="my-10 py-3 px-4 bg-white rounded-xl shadow-md">
+    <h1 class="font-bold text-3xl text-center pb-5 pt-2">Send Money</h1>
+    <hr />
+    <table class="table-auto mx-auto w-full px-5 rounded-xl mt-8 border dark:border-neutral-500">
+      <thead class="bg-purple-900 text-white text-left">
+        <tr class="bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-md py-2 px-4 text-white font-bold">
+          <th class="px-4 py-2">Username</th>
+          <th class="px-4 py-2">Send To</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user_account in user_accounts %}
+          <tr class="border-b dark:border-neutral-500">
+            <td class="px-4 py-2">{{ user_account.user.username }}</td>
+            <td class="px-4 py-2">
+              <a href="{% url 'transactions:send_money' user_account.id %}">Send Money</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
